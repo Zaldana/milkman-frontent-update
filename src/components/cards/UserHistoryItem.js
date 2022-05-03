@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { addToCartActionCreator } from '../../reduxStore/cartState';
 import Button from '@mui/material/Button';
 
-export default function (props) {
+export default function UserHistoryItem(props) {
 
     const {
         productId,
@@ -29,7 +29,7 @@ export default function (props) {
         }
 
         fetchProducts()
-        
+        .catch(console.error)
     }, [])
    
     if (productState.length > 1) {

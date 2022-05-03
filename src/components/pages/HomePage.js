@@ -20,21 +20,24 @@ const HomePage = (props) => {
     }
 
     useEffect(() => {
-
+   
         async function fetchProducts() {
             let productsResult = await AxiosBackend.get(
                 'products/get-products',
             );
             setPreviewProducts(getMultipleRandom(productsResult.data, 4))
         }
+   
         fetchProducts()
+        .catch(console.error)
+   
     }, [])
 
     return (
         <Layout>
             <Box sx={{
                 display: "flex",
-                alignItems: "center", 
+                alignItems: "center",
                 justifyContent: "center"
             }} fullWidth p={3}
             >
@@ -48,7 +51,7 @@ const HomePage = (props) => {
                     alignItems: "center",
                     justifyContent: "center"
                 }}>
-               
+
                 <Box
                     sx={{
                         display: "flex",
@@ -67,7 +70,6 @@ const HomePage = (props) => {
                         variant="h3"
                         style={{
                             fontFamily: "'Fredoka One', cursive",
-                            color: "#172e42",
                             textAlign: "center",
                             color: "white",
                             textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
@@ -81,7 +83,7 @@ const HomePage = (props) => {
             <Typography
                 mt={5} ml={5}
                 variant="h6"
-                sx={{ fontFamily: "Roboto",}}
+                sx={{ fontFamily: "Roboto", }}
             >
                 FEATURED PRODUCTS
             </Typography>
@@ -94,42 +96,43 @@ const HomePage = (props) => {
                     backgroundColor: "#efefef"
                 }}
             >
-            {
-                previewProducts.length > 1 ? (
+                {
+                    previewProducts.length > 1 ? (
                         previewProducts.map((product, i) => {
-                                return (
-                                    <Box
-                                        key={i}
-                                        m={4}
-                                    >
-                                        <ProductCard
-                                            product={product}
-                                        />
-                                    </Box>
-                                );
-                            })
-                ) : (
-                            <Box
+                            return (
+                                <Box
+                                    key={i}
+                                    m={4}
+                                >
+                                    <ProductCard
+                                        product={product}
+                                    />
+                                </Box>
+                            );
+                        })
+                    ) : (
+                        <Box
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "Center",
+                                marginTop: 70,
+                                minHeight: "50vh"
+                            }}
+                        >
+                            <Typography
+                                variant="h2"
                                 style={{
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "Center",
-                                    marginTop: 70
+                                    fontFamily: "'Fredoka One', cursive",
+                                    textAlign: "center",
+                                    textShadow: "5px 5px 5px #19d2ff"
                                 }}
                             >
-                                <Typography
-                                    variant="h2"
-                                    style={{
-                                        fontFamily: "'Fredoka One', cursive",
-                                        textAlign: "center",
-                                        textShadow: "5px 5px 5px #19d2ff"
-                                    }}
-                                >
-                                    Loading...
-                                </Typography>
-                            </Box >
-                )
-            }
+                                Loading...
+                            </Typography>
+                        </Box >
+                    )
+                }
             </Box>
         </Layout>
     )

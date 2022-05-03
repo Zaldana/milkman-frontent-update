@@ -21,7 +21,7 @@ function ProductDisplay() {
     const [ productState, setProductState ] = useState([])
 
     useEffect(() => {
-
+        
         async function fetchProducts() {
             let productsResult = await AxiosBackend.get(
                 'products/get-products',
@@ -29,9 +29,10 @@ function ProductDisplay() {
             
             setProductState(productsResult.data)
         }
-
+        
         fetchProducts()
-
+            .catch(console.error)
+    
     }, [])
     
     const location = useLocation();
@@ -90,7 +91,6 @@ function ProductDisplay() {
                       variant="h3"
                       style={{
                           fontFamily: "'Fredoka One', cursive",
-                          color: "#172e42",
                           textAlign: "center",
                           color: "white",
                           textShadow: "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
