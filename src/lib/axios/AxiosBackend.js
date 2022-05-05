@@ -2,7 +2,7 @@ import axios from 'axios';
 
 let url =
     (process.env.REACT_APP_AXIOS === "development")
-        ? "http://localhost.localdomain:4001/api/"
+        ? "http://localhost:4001/api/"
         : "/api/";
 
 const AxiosBackend = axios.create({

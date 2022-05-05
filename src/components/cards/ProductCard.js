@@ -57,9 +57,12 @@ export default function ProductCard(props) {
         <Card sx={{ mx: 'auto', width: 300, height: 430 }} style={{ padding: '4px' }}>
             <CardMedia
                 component="img"
-                height="270"
                 image={image}
                 alt={description}
+                style={{
+                    height: "270px",
+                    objectFit: "contain"
+                }}
             />
             <CardContent>
                 <Typography variant="h7">{brand}</Typography>
